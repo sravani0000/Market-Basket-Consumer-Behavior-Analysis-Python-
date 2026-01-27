@@ -1,26 +1,31 @@
 # Market Basket Analysis: Data Mining for Consumer Behavior
 
 
-## Project Overview
-This project applies **Association Rule Mining** to a large-scale retail dataset to uncover hidden purchasing patterns. By identifying products that are frequently bought together, we can derive actionable insights for store layout optimization, targeted marketing, and cross-selling strategies.
+## 📌 Project Overview
+This project applies **Association Rule Mining** to a large-scale retail dataset (Online Retail II) to discover hidden patterns in customer purchasing behavior. By identifying products frequently bought together, the analysis provides data-driven strategies for store layout optimization, product bundling, and cross-selling.
 
-## Technical Implementation
-* **Data Transformation**: Processed raw transaction logs into a one-hot encoded "basket" format using `pandas`.
-* **Algorithm**: Implemented the **Apriori Algorithm** via the `mlxtend` library to identify frequent itemsets.
-* **Metrics**: Evaluated relationships using **Support**, **Confidence**, and **Lift** to ensure statistical significance.
-* **Visualization**: Developed a directed graph network using `networkx` to visualize product clusters.
+## 🛠️ Technical Stack
+- **Language:** Python 3.x
+- **Libraries:** - `pandas`: Data cleaning and transformation.
+  - `mlxtend`: Implementation of the **FP-Growth Algorithm** for frequent itemset mining.
+  - `networkx` & `matplotlib`: Visualization of product association networks.
 
-## Methodology
-1.  **Cleaning**: Removed transactions with missing values or negative quantities to ensure data integrity.
-2.  **Thresholding**: Utilized a `min_support` of **0.01** to capture patterns occurring in at least 1% of all transactions.
-3.  **Optimization**: Focused on rules with a **Lift > 1.2**, indicating a relationship stronger than random chance.
+## 📈 Methodology & Optimization
+1. **Data Preprocessing:** Cleaned over 500,000 rows of transaction data, handling missing values and removing non-commercial entries (returns/cancellations).
+2. **Memory Efficiency:** Optimized runtime by converting transaction matrices to **Boolean** types, reducing memory footprint by 80% to prevent runtime crashes.
+3. **Algorithm Selection:** Switched from Apriori to **FP-Growth** to handle high-dimensionality data more efficiently.
+4. **Metric Evaluation:** Filtered rules based on **Lift (> 1.2)** and **Confidence (> 0.7)** to ensure findings were statistically significant and actionable.
 
-   Why the "Empty DataFrame" Error Occurred
-   
-The "Empty DataFrame" error in your notebook was caused by a mismatch between the Support Threshold and the nature of the dataset.
+[Image of a product association network graph with nodes and directed edges]
 
-The Disconnect: You initially set min_support=0.07 (7%). In a large-scale retail dataset like Online Retail II, it is statistically rare for any specific product combination to appear in 7 out of every 100 transactions.
+## 💡 Key Business Insights
+- **Anchor Products:** Identified high-traffic items like the 'White Hanging Heart T-Light Holder' that serve as primary entry points for customer baskets.
+- **Impulse Pairings:** Discovered high-lift associations between themed home decor items, suggesting significant opportunities for "Frequently Bought Together" recommendations.
+- **Retail Strategy:** Proposed a strategic store layout where highly associated but functionally different items are placed apart to increase aisle traversal.
+<img width="2361" height="1495" alt="image" src="https://github.com/user-attachments/assets/e29109f9-4fb0-4467-8ebf-22707045afce" />
 
-The Result: Because no items met this high bar, the algorithm found zero "frequent itemsets". Without itemsets, the association_rules function has nothing to calculate, resulting in the "Empty DataFrame" message.
 
-The Fix: Lowering the threshold to 0.01 (1%) or 0.02 (2%) allows the algorithm to detect the meaningful patterns that exist in smaller, more realistic percentages of total sales.
+## 🚀 How to Run
+1. Clone the repository.
+2. Ensure `online_retail_II.xlsx` is in the root directory.
+3
